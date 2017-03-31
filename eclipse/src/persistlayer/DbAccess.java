@@ -14,7 +14,7 @@ public class DbAccess {
 	
 	static final String DB_CONNECTION_USERNAME = "root";
 	
-	static final String DB_CONNECTION_PASSWORD = "peoples12";
+	static final String DB_CONNECTION_PASSWORD = "";
 	
 	public static Connection connect() {
 		Connection con = null;
