@@ -1,8 +1,0 @@
-Sign in
-<#if registerSuccessful??>
-Thanks for registering ${name}!
-<#if failedLogin??>
-The email ${email} does not exist in our database. Please try again.
-
-Email: 
-Password: 
