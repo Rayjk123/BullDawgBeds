@@ -16,7 +16,7 @@
 				<div id ="headerButtons">
 					<form action="Servlet" method="post">
 					<table>
-						<tr><td>Signed in as ${email}</td></tr>
+						<tr><td>Signed in under ${email}</td></tr>
 					</table>
 					</form>
 				</div>
@@ -30,7 +30,7 @@
 			<div id ="menubar">
 				<form action="Servlet" method="post">
 					<ul>
-	                    <li>
+	                    <li>Location
 							<select name="location">
 					  			<option value="north">North</option>
 					 			<option value="south">South</option>
@@ -38,7 +38,7 @@
 					  			<option value="west">West</option>
 							</select>
 	                    </li>
-	                     <li>
+	                     <li>Beds
 							<select name="bedNumber">
 					  			<option value="one">1</option>
 					 			<option value="two">2</option>
@@ -46,7 +46,7 @@
 					  			<option value="four">4</option>
 							</select>
 	                    </li>
-	                     <li>
+	                     <li>Date
 							<select name="date">
 					  			<option value="fall">Fall</option>
 					 			<option value="spring">Spring</option>
