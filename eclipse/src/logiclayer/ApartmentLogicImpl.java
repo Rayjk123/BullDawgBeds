@@ -1,12 +1,8 @@
 package logiclayer;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,23 +23,22 @@ public class ApartmentLogicImpl {
 		return r;
 	}
 	
-	public static boolean verifyLogin(HttpServletRequest request, HttpServletResponse response, String email, String password) {
+	public static boolean verifyLogin(HttpServletRequest request, HttpServletResponse response, String email, String password) throws SQLException {
 		String query = "SELECT 1 FROM users WHERE email = '"+email+"' AND password = '"+password+"'";
 		Connection con = DbAccess.connect();
 		ResultSet rs = null;
 		boolean loggedIn = false;
 		
-		try {
-			java.sql.PreparedStatement stmt = con.prepareStatement(query);
-			rs = stmt.executeQuery();
-			
-			if (rs.next()) { // enter here if successfully login
-				loggedIn = true;
-			} 
-			
-		} catch (SQLException e) {
+		try{
+			rs = DbAccess.retrieve(con, query);
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}	
+		
+		if (rs.next()) { // enter here if successfully login
+			loggedIn = true;
+		} 
+			
 		DbAccess.disconnect(con);
 		return loggedIn;
 	}
