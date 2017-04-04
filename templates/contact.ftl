@@ -2,18 +2,17 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Sign Up</title>
+		<title>Contact Us</title>
 		<link href="index.css" type="text/css" rel="stylesheet" />
 	</head>
 	<body>
-		<h1>Bulldawg Beds Registration Form</h1>
-		<p>Please use your UGA email.</p>
+		<h1>Contact Us Form</h1>
 		
 		<form action="Servlet" method="post">
 			Name: <input type="text" name="name"/> <br/> 
 			Email: <input type="text" name="email"/> <br/> 
-			Password: <input type="password" name="password"/> <br/> 
-			<input type ="submit" name = "register" value ="Register">
+			Message: <br/><textarea name="message" rows="14" cols="50"></textarea><br/>
+			<input type ="submit" name = "contactButton" value ="Submit">
 		</form>
 	</body>
 </html>

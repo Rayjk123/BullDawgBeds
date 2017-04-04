@@ -11,7 +11,7 @@
 	<body>
 		<div id ="wrapper">
 			<div id ="header">
-				<h1>Bulldawgs Beds</h1>
+				<h1>Bulldawg Beds</h1>
 				
 				<div id ="headerButtons">
 					<form action="Servlet" method="post">
@@ -61,14 +61,15 @@
 			</div>
 			
 			<div id="slideshow">
+				<p><img src ="images/img1.png" alt="apartment" title="apartment"></p>
 			</div>
 			
 			<div id="footer">
 				<table>
 					<tr>
 						<td><input type="submit" name ="support" value="Contact Us"/></td>
-						<td><a href="https://validator.w3.org"><img src="http://cobweb.cs.uga.edu/~mehdi/teaching/4300/images/w3c-html.png" alt="w3c validator"></a></td>
-						<td><a href="https://jigsaw.w3.org/css-validator/"><img src="http://cobweb.cs.uga.edu/~mehdi/teaching/4300/images/w3c-css.png" alt="w3c css validator"></a></td>
+						<!--<td><a href="https://validator.w3.org"><img src="http://cobweb.cs.uga.edu/~mehdi/teaching/4300/images/w3c-html.png" alt="w3c validator"></a></td>
+						<td><a href="https://jigsaw.w3.org/css-validator/"><img src="http://cobweb.cs.uga.edu/~mehdi/teaching/4300/images/w3c-css.png" alt="w3c css validator"></a></td> -->
 						<td><input type="submit" name ="about" value="About Us"/></td>
        				</tr>
 				</table>
