@@ -1,0 +1,97 @@
+body, html{
+    width: 100%;
+    height: 100%;
+    margin: 0pt;
+    padding: 0pt;
+}
+
+#map{
+    float: right;
+    width: 50%;
+    height: 90%;
+    background-color: gray;
+}
+
+#searchStuff{
+    float: left;
+    width: 50%;
+    height: 90%;
+    padding: 0pt;
+    margin: 0pt;
+}
+
+#menubar{
+    width: 100%;
+    height: 10%;
+    padding: 0pt;
+    margin: 0pt;
+}
+
+.menu{
+    list-style-type: none;
+    padding: 0pt;
+    margin: 0pt;
+    overflow: hidden;
+}
+
+.menuItem{
+    display: inline;
+    padding-right: 20pt;
+    margin: 0pt;
+    float: left;
+}
+
+#tableview{
+    background-color: darksalmon;
+    height: 88%;
+}
+
+.infoTable{
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.images{
+    width: 100%;
+    height: 100%;
+}
+
+.imageTD{
+    width: 150pt;
+    height: 150pt;
+    display: block;
+}
+
+.searchInfo{
+    margin-left: 20pt;
+    list-style-type: none;
+    padding: 0pt;
+}
+
+.infoItem{
+    margin: 0pt;
+    padding-bottom: 17pt;
+}
+
+.infoTD{
+    vertical-align: top;
+}
+
+#contactUs{
+    vertical-align: bottom;
+    padding-bottom: 10pt;
+}
+
+table, tr{
+    border: 1px solid midnightblue;
+    border-collapse: collapse;
+}
+
+
+
+tr{
+    margin-top: 10pt;
+    background-color: white;
+}
+
