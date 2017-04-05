@@ -82,12 +82,15 @@ public class Servlet extends HttpServlet {
 				templateName = "signUp.ftl";
 				root.put("notValidEmail","yes");
 			}
+			
 			boolean duplicateEmail = false; // first assume there is no duplicate email in the database
 			
 			if (validEmail){ // enter here if the user enters a valid @uga.edu email
 				try {
 					if(ApartmentLogicImpl.duplicateEmail(request, response, email) == true){
 						duplicateEmail = true;
+						templateName = "signUp.ftl";
+						root.put("duplicateEmail","yes");
 					}
 				} catch (NumberFormatException e){
 					}
@@ -103,7 +106,7 @@ public class Servlet extends HttpServlet {
 			}
 			
 			if (r == 0){
-				//error inserting the new user into the database. 
+				templateName = "signUp.ftl"; //error inserting the new user into the database. 
 			} else{
 				root.put("name", name);
 				root.put("registerSuccessful","yes");
@@ -119,14 +122,12 @@ public class Servlet extends HttpServlet {
 			root.put("email", email);
 			
 			boolean loggedIn = false;
-			try {
-				loggedIn = ApartmentLogicImpl.verifyLogin(request, response, email, password); // check for correct email and password
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} 
+			loggedIn = ApartmentLogicImpl.verifyLogin(request, response, email, password); // check for correct email and password 
 			
 			if (loggedIn) { // enter here if successfully login
+				String loginName = ApartmentLogicImpl.getLoginName(request, response, email); // retrieve the login name from the database
 				templateName = "welcome.ftl";
+				root.put("loginName", loginName);
 			} else {
 				root.put("failedLogin","yes");
 				templateName = "signIn.ftl";

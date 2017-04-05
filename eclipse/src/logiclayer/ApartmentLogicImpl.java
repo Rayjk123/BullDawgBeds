@@ -2,7 +2,6 @@ package logiclayer;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,8 +9,9 @@ import persistlayer.DbAccess;
 
 public class ApartmentLogicImpl {
 	
-
-
+	/*
+	 * This method is called from the Servlet, and it creates a query to that is executed to enter a new user into the database.
+	 */
 	public static int newUser(HttpServletRequest request, HttpServletResponse response, String name, String email, String password) {
 		String query = "INSERT INTO users (name, email, password) Values('"+name+"', '"+email+"', '"+password+"')";
 		int r = 0;
@@ -24,9 +24,10 @@ public class ApartmentLogicImpl {
 	}
 	
 	/*
-	 * This method checks to see if the user's email and password exists in the database.
+	 * This method is called from the Servlet, and it creates a query to that is executed to check if the user's email
+	 * and password exists in the database.
 	 */
-	public static boolean verifyLogin(HttpServletRequest request, HttpServletResponse response, String email, String password) throws SQLException {
+	public static boolean verifyLogin(HttpServletRequest request, HttpServletResponse response, String email, String password) {
 		String query = "SELECT 1 FROM users WHERE email = '"+email+"' AND password = '"+password+"'";
 		Connection con = DbAccess.connect();
 		ResultSet rs = null;
@@ -34,33 +35,32 @@ public class ApartmentLogicImpl {
 		
 		try{
 			rs = DbAccess.retrieve(con, query);
+			if (rs.next()) { // enter here if successfully login
+				loggedIn = true;
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
-		
-		if (rs.next()) { // enter here if successfully login
-			loggedIn = true;
-		} 
+
 			
 		DbAccess.disconnect(con);
 		return loggedIn;
 	}
 
-	public static boolean duplicateEmail(HttpServletRequest request, HttpServletResponse response, String email) throws SQLException {
-		String query = "SELECT 1 FROM users WHERE email = '"+email+"'";
+	public static boolean duplicateEmail(HttpServletRequest request, HttpServletResponse response, String email) {
+		String query = "SELECT * FROM users WHERE email = '"+email+"'";
 		Connection con = DbAccess.connect();
 		ResultSet rs = null;
 		boolean duplicate = false;
 		
 		try{
 			rs = DbAccess.retrieve(con, query);
+			if (rs.next()) { // enter here if the email exists in the database
+				duplicate = true;
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
-		
-		if (rs.next()) { // enter here if the email exists in the database
-			duplicate = true;
-		} 
 			
 		DbAccess.disconnect(con);
 		return duplicate;
@@ -73,6 +73,25 @@ public class ApartmentLogicImpl {
 			valid = true;
 		}
 		return valid;
+	}
+
+	public static String getLoginName(HttpServletRequest request, HttpServletResponse response, String email) {
+		String query = "SELECT name FROM users WHERE email = '"+email+"'";
+		Connection con = DbAccess.connect();
+		ResultSet rs = null;
+		String name = null;
+		
+		try{
+			rs = DbAccess.retrieve(con, query);
+			if (rs.next()) { // enter here if the name was found
+				name = rs.getString("name");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		DbAccess.disconnect(con);
+		return name;
 	}
 
 	
