@@ -16,7 +16,7 @@
 				<div id ="headerButtons">
 					<form action="Servlet" method="post">
 					<table>
-						<tr><td>Signed in under ${email}</td></tr>
+						<tr><td>Welcome ${loginName}!</td></tr>
 					</table>
 					</form>
 				</div>

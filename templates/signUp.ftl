@@ -12,6 +12,11 @@
 		<#if notValidEmail??>
 		<p>Error! Please use a valid @uga.edu email!</p>
 		</#if>
+		
+		<#if duplicateEmail??>
+		<p>Error! The email you used to register already exists in the database!</p>
+		</#if>
+		
 		<form action="Servlet" method="post">
 			Name: <input type="text" name="name"/> <br/> 
 			Email: <input type="text" name="email"/> <br/> 
