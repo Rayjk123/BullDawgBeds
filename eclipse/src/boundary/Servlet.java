@@ -53,7 +53,7 @@ public class Servlet extends HttpServlet {
 	 * This method is called by the doGet method. This method will create and process the template
 	 * used to display the search results or an error page if the user input is invalid.
 	 */
-	public void runTemplate(HttpServletRequest request, HttpServletResponse response) {
+	public void runTemplate(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
 		Template template = null;
 		String templateName = null; //template to be generated
@@ -77,16 +77,24 @@ public class Servlet extends HttpServlet {
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
-			boolean valid = true; // boolean check for valid inputs
-			
-			// checking for valid inputs (user must enter a uga.edu email) - THIS MIGHT BE JAVASCRIPT INSTEAD
-			try{
-			} catch (NumberFormatException e){
-				valid = false;
+			boolean validEmail = ApartmentLogicImpl.validEmail(email); // boolean check for valid inputs
+			if (validEmail == false){
+				templateName = "signUp.ftl";
+				root.put("notValidEmail","yes");
 			}
+			boolean duplicateEmail = false; // first assume there is no duplicate email in the database
 			
+			if (validEmail){ // enter here if the user enters a valid @uga.edu email
+				try {
+					if(ApartmentLogicImpl.duplicateEmail(request, response, email) == true){
+						duplicateEmail = true;
+					}
+				} catch (NumberFormatException e){
+					}
+			}
+
 			int r = 0;
-			if (valid == true){ // enter here if the inputs are in fact valid
+			if (duplicateEmail == false && validEmail == true){ // enter here if there is no duplicate email in the database
 				try{
 					r = ApartmentLogicImpl.newUser(request, response, name, email, password); // newUser method is called to add a new user into the database
 				} catch (Exception e){
@@ -149,7 +157,11 @@ public class Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			runTemplate(request, response);
+			try {
+				runTemplate(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 	}
 
 	/**
