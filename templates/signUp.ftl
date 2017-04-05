@@ -9,6 +9,9 @@
 		<h1>Bulldawg Beds Registration Form</h1>
 		<p>Please use your UGA email.</p>
 		
+		<#if notValidEmail??>
+		<p>Error! Please use a valid @uga.edu email!</p>
+		</#if>
 		<form action="Servlet" method="post">
 			Name: <input type="text" name="name"/> <br/> 
 			Email: <input type="text" name="email"/> <br/> 
