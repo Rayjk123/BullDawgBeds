@@ -6,8 +6,6 @@
 		<link href="index.css" type="text/css" rel="stylesheet" />
 	</head>
 	
-	
-	
 	<body>
 		<div id ="wrapper">
 			<div id ="header">
@@ -54,6 +52,14 @@
 					  			<option value="fall">Fall</option>
 					 			<option value="spring">Spring</option>
 					 			<option value="summer">Summer</option>
+							</select>
+	                    </li>
+	                    <li>Price Range 
+							<select name="price">
+					  			<option value="range1">$200-$399</option>
+					 			<option value="range2">$400-$599</option>
+					 			<option value="range3">$600-$799</option>
+					  			<option value="range4">$800+</option>
 							</select>
 	                    </li>
 	                    <li>
