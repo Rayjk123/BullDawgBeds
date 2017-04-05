@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BullDawg Search</title>
+    <script src="searchPage.js"></script>
+    <link href="searchPage.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h3>Google Maps addition</h3>
+<div id="searchStuff">
+    <div id ="menubar">
+        <p>Hello</p>
+        <form action="Servlet" method="post">
+            <ul class="menu">
+                <li class="menuItem">Location
+                    <select name="location">
+                        <option value="north">North</option>
+                        <option value="south">South</option>
+                        <option value="east">East</option>
+                        <option value="west">West</option>
+                    </select>
+                </li>
+                <li class="menuItem">Beds
+                    <select name="bedNumber">
+                        <option value="one">1</option>
+                        <option value="two">2</option>
+                        <option value="three">3</option>
+                        <option value="four">4</option>
+                    </select>
+                </li>
+                <li class="menuItem">Date
+                    <select name="date">
+                        <option value="fall">Fall</option>
+                        <option value="spring">Spring</option>
+                        <option value="summer">Summer</option>
+                    </select>
+                </li>
+                <li class="menuItem">Price Range
+                    <select name="price">
+                        <option value="range1">$200-$399</option>
+                        <option value="range2">$400-$599</option>
+                        <option value="range3">$600-$799</option>
+                        <option value="range4">$800+</option>
+                    </select>
+                </li>
+                <li class="menuItem">
+                    <input type="submit" name ="search" value="Search"/>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div id="tableview">
+        <table class="infoTable">
+            <tr>
+                <td class="imageTD"><img class="images" src="http://image1.apartmentguide.com/imgr/03a6173620512c30fee0547c3b074cba/724-" alt="Apartment Image"/></td>
+                <td class="infoTD">
+                    <ul class="searchInfo">
+                        <li class="infoItem">Name: Reserve at Athens</li>
+                        <li class="infoItem">Address: Wonderland</li>
+                        <li class="infoItem">Price: $425</li>
+                        <li class="infoItem">Beds: 4</li>
+                    </ul>
+                </td>
+                <td id="contactUs">
+                   Contact Us
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="map"></div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClxRJ-Xmbc4CiuztFlLQfXwYjcrz8LfsA&callback=initMap">
+</script>
+</body>
+</html>
