@@ -16,7 +16,11 @@
 				<div id ="headerButtons">
 					<form action="Servlet" method="post">
 					<table>
-						<tr><td>Welcome ${loginName}!</td></tr>
+						<tr>
+							<td><input type="submit" name ="leaseMyApartment" value="Lease your apartment"/></td>
+							<td><input type="submit" name ="checkMessages" value="Inbox"/></td>
+							<td>Welcome ${loginName}!</td>
+						</tr>
 					</table>
 					</form>
 				</div>
@@ -65,14 +69,16 @@
 			</div>
 			
 			<div id="footer">
+				<form action="Servlet" method="post">
 				<table>
 					<tr>
-						<td><input type="submit" name ="support" value="Contact Us"/></td>
+						<td><input type="submit" name ="contact" value="Contact Us"/></td>
 						<!--<td><a href="https://validator.w3.org"><img src="http://cobweb.cs.uga.edu/~mehdi/teaching/4300/images/w3c-html.png" alt="w3c validator"></a></td>
 						<td><a href="https://jigsaw.w3.org/css-validator/"><img src="http://cobweb.cs.uga.edu/~mehdi/teaching/4300/images/w3c-css.png" alt="w3c css validator"></a></td> -->
 						<td><input type="submit" name ="about" value="About Us"/></td>
        				</tr>
 				</table>
+				</form>
 			</div>
 		</div>
 	</body>
