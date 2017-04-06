@@ -62,12 +62,15 @@ public class Servlet extends HttpServlet {
 		SimpleHash root = new SimpleHash(df.build());
 		
 		// The following Strings are used to check for a null value.
-		String signIn = request.getParameter("sign in"); // home page sign in button
-		String signUp = request.getParameter("sign up"); // home page sign up button
-		String register = request.getParameter("register"); // signUp.ftl register button
-		String login = request.getParameter("login"); // signIn.ftl login button
-		String contact = request.getParameter("contact"); // home page contact button
-		String about = request.getParameter("about"); // home page about button
+		String signIn = request.getParameter("sign in"); // home page "Sign in" button
+		String signUp = request.getParameter("sign up"); // home page "Sign up" button
+		String register = request.getParameter("register"); // signUp.ftl "Register" button
+		String login = request.getParameter("login"); // signIn.ftl "Login" button
+		String contact = request.getParameter("contact"); // home page "Contact Us" button
+		String about = request.getParameter("about"); // home page "About Us" button
+		String leaseMyApartment = request.getParameter("leaseMyApartment"); // home page "Lease your apartment" button
+		String checkMessages = request.getParameter("checkMessages"); // home page "Inbox" button
+
 
 		//begin checks to see what the input is
 		if(signUp != null){ // check to see if user clicked the sign up button on the home page
@@ -132,10 +135,17 @@ public class Servlet extends HttpServlet {
 				root.put("failedLogin","yes");
 				templateName = "signIn.ftl";
 			}
+			
 		} else if (contact != null){
 			templateName = "contact.ftl";
+			
 		} else if (about != null){
 			templateName = "about.ftl";
+			
+		} else if (leaseMyApartment != null){
+			
+		} else if (checkMessages != null){
+			
 		}
 	
 	
