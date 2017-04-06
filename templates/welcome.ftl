@@ -57,6 +57,14 @@
 					 			<option value="summer">Summer</option>
 							</select>
 	                    </li>
+	                    <li>Price
+							<select name="price">
+					  			<option value="low">$200-399</option>
+					 			<option value="medium">$400-699</option>
+					 			<option value="high">$700-899</option>
+					 			<option value="tooExpensive">$900+</option>
+							</select>
+	                    </li>
 	                    <li>
 	                    	<input type="submit" name ="search" value="Submit"/>
 	                   	</li>
