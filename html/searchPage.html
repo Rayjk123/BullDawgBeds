@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>BullDawg Search</title>
-    <script src="searchPage.js"></script>
     <link href="searchPage.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <!-- Include jQuery Popup Overlay -->
+    <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+    <script src="searchPage.js"></script>
+    <!--This is the link so that we can use Open Sans on our html page-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 </head>
 <body>
 <h3>Google Maps addition</h3>
@@ -62,15 +67,29 @@
                         <li class="infoItem">Beds: 4</li>
                     </ul>
                 </td>
-                <td id="contactUs">
-                   Contact Us
+                <td id="apply">
+                    <!--Important to not change the class of this button or else it will not work.-->
+                    <button class="my_popup_open">Apply</button>
                 </td>
             </tr>
         </table>
     </div>
 </div>
 <div id="map"></div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClxRJ-Xmbc4CiuztFlLQfXwYjcrz8LfsA&callback=initMap">
-</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClxRJ-Xmbc4CiuztFlLQfXwYjcrz8LfsA&callback=initMap"></script>
+<!--This is the pop up div that will show up in the middle of the screen.
+The name of the id is what makes it open so do not change its id.-->
+<div id ="my_popup">
+    <p>Please enter your information below so that the owner of this property may contact you later.</p>
+    <form id="applyPopUp" action="Servlet" method="post">
+        <input type="text" name="name" placeholder="Name"><br/>
+        <input type="text" name="phone" placeholder="Phone"><br/>
+        <input type="text" name="email" placeholder="Email"><br/>
+        <input type="text" name="message" placeholder="Message"><br/>
+        <div class="center">
+            <input id="applicationSubmit" type="submit" name="sendApplication" value="Apply"/>
+        </div>
+    </form>
+</div>
 </body>
 </html>
