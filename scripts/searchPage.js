@@ -9,3 +9,10 @@ function initMap() {
         map: map
     });
 }
+
+$(document).ready(function () {
+        $.fn.popup.defaults.transition = 'all 0.3s';
+        $.fn.popup.defaults.pagecontainer = '.container';
+        $('#my_popup').popup();
+
+});
