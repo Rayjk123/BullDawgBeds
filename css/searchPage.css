@@ -78,9 +78,12 @@ body, html{
     vertical-align: top;
 }
 
-#contactUs{
+/*This is the td for the apply button which will show the pop up button*/
+#apply{
     vertical-align: bottom;
-    padding-bottom: 10pt;
+    width: 20pt;
+    padding-bottom: 5px;
+    padding-right: 5px;
 }
 
 table, tr{
@@ -89,9 +92,78 @@ table, tr{
 }
 
 
-
 tr{
     margin-top: 10pt;
     background-color: white;
 }
+
+/*This is the pop up itself*/
+#my_popup{
+    background-color: white;
+    padding: 10pt;
+    width: 25%;
+}
+
+/*This is the form on the pop up*/
+#applyPopUp{
+    width: 100%;
+}
+
+/*Only does css on the text fields for the page which is only the pop up stuff*/
+input[type=text]{
+    width: 100%;
+    height: 30pt;
+    margin-bottom: 15pt;
+    font-family: "Open Sans";
+    font-size: 15px;
+    padding-left: 10pt;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/*This is the css for the submit button on the application page*/
+#applicationSubmit{
+    width: 100%;
+    background-color: rgb(217, 30, 24);
+    font-family: "Open Sans";
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 50pt;
+}
+
+/*This div is used to align things to the center
+I found out I also needed it to be bigger in height to allow the submit button to be bigger in height lol*/
+.center{
+    text-align: center;
+}
+
+p{
+    font-family: "Open Sans";
+    font-size: 15px;
+}
+
+/*This is the css for the apply buttons for the page which should all be under this class.*/
+.my_popup_open{
+    background-color: rgb(217, 30, 24);
+    font-family: "Open Sans";
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 40px;
+}
+
+/*
+The webkit thing could be useful to change the height of the button in the future.
+input[type=submit]{
+    -webkit-appearance: none;
+    height: 100pts;
+}
+*/
+
+
 
