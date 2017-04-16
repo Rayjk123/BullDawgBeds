@@ -59,14 +59,14 @@
 	                    </li>
 	                    <li>Price
 							<select name="price">
-					  			<option value="low">$200-399</option>
-					 			<option value="medium">$400-699</option>
-					 			<option value="high">$700-899</option>
-					 			<option value="tooExpensive">$900+</option>
+					  			<option value="range1">$200-399</option>
+					 			<option value="range2">$400-699</option>
+					 			<option value="range3">$700-899</option>
+					 			<option value="range4">$900+</option>
 							</select>
 	                    </li>
 	                    <li>
-	                    	<input type="submit" name ="search" value="Submit"/>
+	                    	<input type="submit" name ="search" value="Search"/>
 	                   	</li>
 	                </ul>
 				</form>
