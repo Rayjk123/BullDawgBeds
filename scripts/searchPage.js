@@ -1,3 +1,4 @@
+
 function initMap() {
     var uluru = {lat: 33.950747, lng: -83.375816};
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -10,9 +11,28 @@ function initMap() {
     });
 }
 
-$(document).ready(function () {
-        $.fn.popup.defaults.transition = 'all 0.3s';
-        $.fn.popup.defaults.pagecontainer = '.container';
-        $('#my_popup').popup();
-
+$(document).ready(function(){
+	$("#submitSearch").click(function(){
+		callServlet();
+	});
+	
+	function callServlet(){
+		
+		var dataInfo = $("#searchFilter").serialize();
+		alert(dataInfo);
+		
+		$.ajax({
+			url : 'SearchServlet',
+			data : dataInfo,
+			success : function(responseText) {
+				alert(responseText);
+				$('#tableview').html(responseText);
+			}
+		});
+	}
+	
+	$.fn.popup.defaults.transition = 'all 0.3s';
+	$.fn.popup.defaults.pagecontainer = '.container';
+	$('#my_popup').popup();
 });
+
