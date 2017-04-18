@@ -140,5 +140,78 @@ public class ApartmentLogicImpl {
 		}
 		DbAccess.disconnect(con);
 	}
-
+	
+	public static String getApartmentSearch(String location, int beds, String semester, int priceRangeLow, int priceRangeHigh) {
+		String query = "select * from apartments where location = '" + location + "' and beds = "
+				+ beds + " and price >= " + priceRangeLow +" and price <= " + priceRangeHigh + " and semester = '" + semester + "'";
+		Connection con = DbAccess.connect();
+		ResultSet rs = null;
+		
+		String tableview = "<table class=\"infoTable\">";
+		
+		try{
+			//Going to create the entire table in html code and put it in the string tableview
+			rs = DbAccess.retrieve(con, query);
+			if (rs.next()) { // enter here if the name was found
+				tableview = tableview + "<tr>";
+				tableview = tableview + "<td class=\"infoTD\">";
+				tableview = tableview + "<ul class=\"searchInfo\">";
+				String name = rs.getString("name");
+				String address = rs.getString("address");
+				String price = rs.getString("price");
+				String numBeds = rs.getString("beds");
+				tableview = tableview + "<li class=\"infoItem\">Name: " + name + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Address: " + address + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Price: " + price + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Beds: " + numBeds + "</li>";
+				tableview = tableview + "</ul></td>";
+				tableview = tableview + "<td id =\"apply\">";
+				tableview = tableview + "<button class=\"my_popup_open\">Apply</button></td>";
+				tableview = tableview + "</tr>";
+			}
+			tableview = tableview + "</table>";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		DbAccess.disconnect(con);
+		return tableview;
+	}
+	
+	public static String getApartmentSearch(String location, int beds, String semester, int priceRangeLow) {
+		String query = "select * from apartments where location = '" + location + "' and beds = "
+				+ beds + " and price >= " + priceRangeLow + " and semester = '" + semester + "'";
+		Connection con = DbAccess.connect();
+		ResultSet rs = null;
+		
+		String tableview = "<table class=\"infoTable\">";
+		
+		try{
+			//Going to create the entire table in html code and put it in the string tableview
+			rs = DbAccess.retrieve(con, query);
+			if (rs.next()) { // enter here if the name was found
+				tableview = tableview + "<tr>";
+				tableview = tableview + "<td class=\"infoTD\">";
+				tableview = tableview + "<ul class=\"searchInfo\">";
+				String name = rs.getString("name");
+				String address = rs.getString("address");
+				String price = rs.getString("price");
+				String numBeds = rs.getString("beds");
+				tableview = tableview + "<li class=\"infoItem\">Name: " + name + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Address: " + address + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Price: " + price + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Beds: " + numBeds + "</li>";
+				tableview = tableview + "</ul></td>";
+				tableview = tableview + "<td id =\"apply\">";
+				tableview = tableview + "<button class=\"my_popup_open\">Apply</button></td>";
+				tableview = tableview + "</tr>";
+			}
+			tableview = tableview + "</table>";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		DbAccess.disconnect(con);
+		return tableview;
+	}
 }
