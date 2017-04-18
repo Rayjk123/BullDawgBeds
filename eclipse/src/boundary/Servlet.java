@@ -70,6 +70,9 @@ public class Servlet extends HttpServlet {
 		String about = request.getParameter("about"); // home page "About Us" button
 		String leaseMyApartment = request.getParameter("leaseMyApartment"); // home page "Lease your apartment" button
 		String checkMessages = request.getParameter("checkMessages"); // home page "Inbox" button
+//		String search = request.getParameter("search"); // search button
+		String leaseIt = request.getParameter("leaseIt"); // submit their lease button
+		String loginName = null;
 
 
 		//begin checks to see what the input is
@@ -128,7 +131,7 @@ public class Servlet extends HttpServlet {
 			loggedIn = ApartmentLogicImpl.verifyLogin(request, response, email, password); // check for correct email and password 
 			
 			if (loggedIn) { // enter here if successfully login
-				String loginName = ApartmentLogicImpl.getLoginName(request, response, email); // retrieve the login name from the database
+				loginName = ApartmentLogicImpl.getLoginName(request, response, email); // retrieve the login name from the database
 				templateName = "welcome.ftl";
 				root.put("loginName", loginName);
 			} else {
@@ -136,16 +139,49 @@ public class Servlet extends HttpServlet {
 				templateName = "signIn.ftl";
 			}
 			
-		} else if (contact != null){
+		} else if (contact != null){ // check to see if user clicked the contact us button on the home page
 			templateName = "contact.ftl";
 			
-		} else if (about != null){
+		} else if (about != null){ // check to see if user clicked the contact us button on the home page
 			templateName = "about.ftl";
 			
-		} else if (leaseMyApartment != null){
+		} else if (leaseMyApartment != null){ // check to see if user clicked the lease my apartment button on the home page
+			templateName = "lease.ftl";
 			
-		} else if (checkMessages != null){
+		} else if (checkMessages != null){ // check to see if user clicked the inbox button on the home page
 			
+//		} else if (search != null){ // check to see if user clicked the search button on the home page
+//			templateName = "searchPage.ftl";
+//			
+		} else if (leaseIt != null){
+
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String address = request.getParameter("address");
+			String location = request.getParameter("location");
+			String picture = request.getParameter("pic");
+			String semester = request.getParameter("semester");
+			String priceX = request.getParameter("price");
+			String bedsX = request.getParameter("beds");
+			int price = 0;
+			int beds = 0;
+			
+			int r = 0;
+			try{
+				price = Integer.parseInt(priceX);
+				beds = Integer.parseInt(bedsX);
+			} catch (NumberFormatException e){
+			}
+			
+				
+				r = ApartmentLogicImpl.addLease(request, response, email, address, location, price, beds, name, semester);
+				ApartmentLogicImpl.addPicture(request, response, name, picture);
+				
+				loginName = ApartmentLogicImpl.getLoginName(request, response, email); // retrieve the login name from the database
+				root.put("loginName", loginName);
+
+			
+			templateName = "index.html";
 		}
 	
 	
