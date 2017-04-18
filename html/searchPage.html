@@ -16,7 +16,7 @@
 <div id="searchStuff">
     <div id ="menubar">
         <p>Hello</p>
-        <form action="Servlet" method="post">
+        <form id="searchFilter" action="SearchServlet" method="post">
             <ul class="menu">
                 <li class="menuItem">Location
                     <select name="location">
@@ -28,14 +28,14 @@
                 </li>
                 <li class="menuItem">Beds
                     <select name="bedNumber">
-                        <option value="one">1</option>
-                        <option value="two">2</option>
-                        <option value="three">3</option>
-                        <option value="four">4</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
                     </select>
                 </li>
                 <li class="menuItem">Date
-                    <select name="date">
+                    <select name="semester">
                         <option value="fall">Fall</option>
                         <option value="spring">Spring</option>
                         <option value="summer">Summer</option>
@@ -43,14 +43,15 @@
                 </li>
                 <li class="menuItem">Price Range
                     <select name="price">
-                        <option value="range1">$200-$399</option>
+                        <option value="range1">$0-$399</option>
                         <option value="range2">$400-$599</option>
                         <option value="range3">$600-$799</option>
                         <option value="range4">$800+</option>
                     </select>
                 </li>
                 <li class="menuItem">
-                    <input type="submit" name ="search" value="Search"/>
+                    <input id ="submitSearch" type="button" value="Search"/>
+                    <!-- <button id="submitSearch">Search</button> -->
                 </li>
             </ul>
         </form>
@@ -91,5 +92,6 @@ The name of the id is what makes it open so do not change its id.-->
         </div>
     </form>
 </div>
+<div id="practiceDiv"></div>
 </body>
 </html>
