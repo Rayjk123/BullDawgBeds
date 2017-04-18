@@ -21,7 +21,7 @@
 					  			<option value="west">West</option>
 			          </select><br/> 
 			Price: <input type="text" name="price"/> <br/> 
-			Beds: <select name="beds">
+			# of beds: <select name="beds">
 					  			<option value="one">1</option>
 					 			<option value="two">2</option>
 					 			<option value="three">3</option>
@@ -32,6 +32,7 @@
 					 			<option value="spring">spring</option>
 					 			<option value="summer">summer</option>
 							</select><br/>
+			Image: <input type="file" name="pic" accept="image/*">
 
 			<p></p>
 			<input id = "button" type ="submit" name = "leaseIt" value ="Submit">
