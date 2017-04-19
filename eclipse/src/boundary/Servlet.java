@@ -163,6 +163,7 @@ public class Servlet extends HttpServlet {
 			String semester = request.getParameter("semester");
 			String priceX = request.getParameter("price");
 			String bedsX = request.getParameter("beds");
+			String image = null;
 			int price = 0;
 			int beds = 0;
 			
@@ -174,7 +175,7 @@ public class Servlet extends HttpServlet {
 			}
 			
 				
-				r = ApartmentLogicImpl.addLease(request, response, email, address, location, price, beds, name, semester);
+				r = ApartmentLogicImpl.addLease(email, address, location, price, beds, name, semester, image);
 				ApartmentLogicImpl.addPicture(request, response, name, picture);
 				
 				loginName = ApartmentLogicImpl.getLoginName(request, response, email); // retrieve the login name from the database
