@@ -94,18 +94,72 @@ public class SearchServlet extends HttpServlet {
 			table = apartmentSQL.getApartmentSearch(location, numBeds, semester, 800);
 		}
 		
-		System.out.println(table);
+		//System.out.println(table);
 		
 		System.out.println("This is the location: " + location);
 		System.out.println("This is the number of Beds: " + bedNumber);
 		System.out.println("This is the semester: " + semester);
 		System.out.println("This is the price: " + price);
-		//System.out.println("This is the location: " + location);
 		//apartmentSQL.getApartmentSearch();
 		
 		try {
 			response.setContentType("text/html");
 			response.getWriter().write(table);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} //catch (TemplateException e) {
+			//e.printStackTrace();
+		//}
+	}
+	
+	@SuppressWarnings("static-access")
+	public void runTemplate2(HttpServletRequest request, HttpServletResponse response) {
+
+		// You can use this structure for all of your objects to be sent to browser
+		ApartmentLogicImpl apartmentSQL = new ApartmentLogicImpl();
+		Template template = null;
+		DefaultObjectWrapperBuilder df = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
+		SimpleHash root = new SimpleHash(df.build());
+		System.out.println("Entered the Servlet");
+		boolean valid = true;
+		
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String address = request.getParameter("address");
+		String location = request.getParameter("location");
+		String price = request.getParameter("price");
+		int numPrice = 0;
+		try {
+		    numPrice = Integer.parseInt(price);
+		  } catch (NumberFormatException e) {
+		    valid = false;
+		  }
+		String beds = request.getParameter("beds");
+		int numBeds = Integer.parseInt(beds);
+		String semester = request.getParameter("semester");
+		String imgSrc = request.getParameter("imgSrc");
+		if(valid){
+			apartmentSQL.addLease(email, address, location, numPrice, numBeds, name, semester, imgSrc);
+		}
+		
+		System.out.println("This is the name: " + name);
+		System.out.println("This is the email: " + email);
+		System.out.println("This is the address: " + address);
+		System.out.println("This is the location: " + location);
+		System.out.println("This is the number of Beds: " + numBeds);
+		System.out.println("This is the semester: " + semester);
+		System.out.println("This is the price: " + price);
+		
+		try {
+			response.setContentType("text/html");
+			if(valid){
+				response.getWriter().write("valid");
+			}
+			//This means not valid
+			else{
+				response.getWriter().write("invalid");
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -119,7 +173,12 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Entered Get");
-		runTemplate(request, response);
+		if(request.getParameter("type").equals("lease")){
+			runTemplate2(request, response);
+		}
+		else{
+			runTemplate(request, response);
+		}
 	}
 
 	/**
