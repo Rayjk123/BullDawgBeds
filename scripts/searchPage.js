@@ -18,14 +18,13 @@ $(document).ready(function(){
 	
 	function callServlet(){
 		
-		var dataInfo = $("#searchFilter").serialize();
-		alert(dataInfo);
+		var dataInfo = $("#searchFilter").serializeArray();
+		dataInfo.push({name: "type", value: "search"});
 		
 		$.ajax({
 			url : 'SearchServlet',
 			data : dataInfo,
 			success : function(responseText) {
-				alert(responseText);
 				$('#tableview').html(responseText);
 			}
 		});
