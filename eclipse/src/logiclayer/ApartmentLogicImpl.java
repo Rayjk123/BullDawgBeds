@@ -18,7 +18,7 @@ public class ApartmentLogicImpl {
 	/*
 	 * This method is called from the Servlet, and it creates a query to that is executed to enter a new user into the database.
 	 */
-	public static int newUser(HttpServletRequest request, HttpServletResponse response, String name, String email, String password) {
+	public int newUser(HttpServletRequest request, HttpServletResponse response, String name, String email, String password) {
 		String query = "INSERT INTO users (name, email, password) Values('"+name+"', '"+email+"', '"+password+"')";
 		int r = 0;
 		try{
@@ -33,7 +33,7 @@ public class ApartmentLogicImpl {
 	 * This method is called from the Servlet, and it creates a query to that is executed to check if the user's email
 	 * and password exists in the database.
 	 */
-	public static boolean verifyLogin(HttpServletRequest request, HttpServletResponse response, String email, String password) {
+	public boolean verifyLogin(HttpServletRequest request, HttpServletResponse response, String email, String password) {
 		String query = "SELECT 1 FROM users WHERE email = '"+email+"' AND password = '"+password+"'";
 		Connection con = DbAccess.connect();
 		ResultSet rs = null;
@@ -52,8 +52,8 @@ public class ApartmentLogicImpl {
 		DbAccess.disconnect(con);
 		return loggedIn;
 	}
-
-	public static boolean duplicateEmail(HttpServletRequest request, HttpServletResponse response, String email) {
+	
+	public boolean duplicateEmail(HttpServletRequest request, HttpServletResponse response, String email) {
 		String query = "SELECT * FROM users WHERE email = '"+email+"'";
 		Connection con = DbAccess.connect();
 		ResultSet rs = null;
@@ -72,7 +72,7 @@ public class ApartmentLogicImpl {
 		return duplicate;
 	}
 
-	public static boolean validEmail(String email) {
+	public boolean validEmail(String email) {
 		boolean valid = false;
 		
 		if(email.contains("@uga.edu")){
@@ -81,7 +81,7 @@ public class ApartmentLogicImpl {
 		return valid;
 	}
 
-	public static String getLoginName(HttpServletRequest request, HttpServletResponse response, String email) {
+	public String getLoginName(HttpServletRequest request, HttpServletResponse response, String email) {
 		String query = "SELECT name FROM users WHERE email = '"+email+"'";
 		Connection con = DbAccess.connect();
 		ResultSet rs = null;
@@ -100,10 +100,11 @@ public class ApartmentLogicImpl {
 		return name;
 	}
 
-	public static int addLease(HttpServletRequest request, HttpServletResponse response, String loginEmail,
-			String address, String location, int price, int beds, String name, String semester) {
+	public int addLease(String loginEmail,String address, String location, int price, 
+			int beds, String name, String semester, String image) {
 		
-		String query = "INSERT INTO apartments (user_email, address, location, price, beds, name, semester) Values('"+loginEmail+"', '"+address+"', '"+location+"', '"+price+"', '"+beds+"', '"+name+"', '"+semester+"')";
+		String query = "INSERT INTO apartments (user_email, address, location, price, beds, name, semester, "
+				+ "image) Values('"+loginEmail+"', '"+address+"', '"+location+"', "+price+", "+beds+", '"+name+"', '"+semester+"', '" + image + "')";
 		int r = 0;
 		try{
 			r = DbAccess.insert(query);
@@ -113,7 +114,7 @@ public class ApartmentLogicImpl {
 		return r;
 	}
 
-	public static void addPicture(HttpServletRequest request, HttpServletResponse response, String name,
+	public void addPicture(HttpServletRequest request, HttpServletResponse response, String name,
 			String picture) {
 		String sql = "UPDATE apartments set image=?" +  " where name = '"+name+"'";	
 		
@@ -141,19 +142,23 @@ public class ApartmentLogicImpl {
 		DbAccess.disconnect(con);
 	}
 	
-	public static String getApartmentSearch(String location, int beds, String semester, int priceRangeLow, int priceRangeHigh) {
+	public String getApartmentSearch(String location, int beds, String semester, int priceRangeLow, int priceRangeHigh) {
 		String query = "select * from apartments where location = '" + location + "' and beds = "
 				+ beds + " and price >= " + priceRangeLow +" and price <= " + priceRangeHigh + " and semester = '" + semester + "'";
 		Connection con = DbAccess.connect();
 		ResultSet rs = null;
+		
+		System.out.println(query);
 		
 		String tableview = "<table class=\"infoTable\">";
 		
 		try{
 			//Going to create the entire table in html code and put it in the string tableview
 			rs = DbAccess.retrieve(con, query);
-			if (rs.next()) { // enter here if the name was found
+			while (rs.next()) { // enter here if the name was found
 				tableview = tableview + "<tr>";
+				tableview = tableview + "<td class=\"imageTD\"><img class=\"images\" alt=\"ApartmentImage\" src=\"";
+				tableview = tableview + rs.getString("image") + "\"/></td>";
 				tableview = tableview + "<td class=\"infoTD\">";
 				tableview = tableview + "<ul class=\"searchInfo\">";
 				String name = rs.getString("name");
@@ -178,7 +183,7 @@ public class ApartmentLogicImpl {
 		return tableview;
 	}
 	
-	public static String getApartmentSearch(String location, int beds, String semester, int priceRangeLow) {
+	public String getApartmentSearch(String location, int beds, String semester, int priceRangeLow) {
 		String query = "select * from apartments where location = '" + location + "' and beds = "
 				+ beds + " and price >= " + priceRangeLow + " and semester = '" + semester + "'";
 		Connection con = DbAccess.connect();
@@ -189,7 +194,7 @@ public class ApartmentLogicImpl {
 		try{
 			//Going to create the entire table in html code and put it in the string tableview
 			rs = DbAccess.retrieve(con, query);
-			if (rs.next()) { // enter here if the name was found
+			while (rs.next()) { // enter here if the name was found
 				tableview = tableview + "<tr>";
 				tableview = tableview + "<td class=\"infoTD\">";
 				tableview = tableview + "<ul class=\"searchInfo\">";
