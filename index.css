@@ -166,7 +166,9 @@ input[name="sign up"]{
 input[name="search"]{
      background-color: rgb(100, 0, 0);
      color: rgb(249, 64, 64);
-  width: 387px;
+     display: block;
+   display: inline-block;
+  width: 100%;
   height: 107px;
   font-size: 30px;
   font-family: "NCAA Georgia Bulldog Bold";
@@ -216,19 +218,7 @@ input[type=submit]{
  
   
 }
-ul {
-    list-style-type: none;
-    margin: 0;
-    color: rgb(249, 64, 64);
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
 
-li {
-    float: left;
-    font-size:30px;
-}
 
 li a, .dropbtn {
     display: inline-block;
