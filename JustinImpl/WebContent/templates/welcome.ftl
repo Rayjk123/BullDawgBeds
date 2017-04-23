@@ -17,7 +17,7 @@
 						<tr>
 							<td><input type="submit" name ="leaseMyApartment" value="Lease your apartment"/></td>
 							<td><input type="submit" name ="checkMessages" value="Inbox"/></td>
-							<td>Welcome ${loginName}!</td>
+							<td class = "Welcome">Welcome <br> ${loginName}!</td>
 						</tr>
 					</table>
 					</form>
