@@ -168,6 +168,42 @@ public class SearchServlet extends HttpServlet {
 		//}
 	}
 
+	@SuppressWarnings("static-access")
+	public void runTemplate3(HttpServletRequest request, HttpServletResponse response) {
+
+		// You can use this structure for all of your objects to be sent to browser
+		ApartmentLogicImpl apartmentSQL = new ApartmentLogicImpl();
+		Template template = null;
+		DefaultObjectWrapperBuilder df = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
+		SimpleHash root = new SimpleHash(df.build());
+		System.out.println("Entered the Servlet");
+		
+		String email = request.getParameter("email");
+		String message = request.getParameter("message");
+		
+		boolean validEmail = apartmentSQL.duplicateEmail(request, response, email);
+		if(validEmail){
+			apartmentSQL.addMessage(email, message);
+		}
+		
+		try {
+			response.setContentType("text/html");
+			if(validEmail){
+				response.getWriter().write("valid");
+			}
+			else{
+				response.getWriter().write("invalid");
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} //catch (TemplateException e) {
+			//e.printStackTrace();
+		//}
+	}
+
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -176,10 +212,14 @@ public class SearchServlet extends HttpServlet {
 		if(request.getParameter("type").equals("lease")){
 			runTemplate2(request, response);
 		}
+		else if(request.getParameter("type").equals("apply")){
+			runTemplate3(request, response);
+		}
 		else{
 			runTemplate(request, response);
 		}
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
