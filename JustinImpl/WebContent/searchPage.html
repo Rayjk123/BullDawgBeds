@@ -75,6 +75,10 @@
         </table>
     </div>
 </div>
+<div id="search">
+	<input id="address" type="textbox">
+	<input id="submit" type="button" value="Map It!">
+</div>
 <div id="map"></div>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClxRJ-Xmbc4CiuztFlLQfXwYjcrz8LfsA&callback=initMap"></script>
 <!--This is the pop up div that will show up in the middle of the screen.
@@ -82,12 +86,10 @@ The name of the id is what makes it open so do not change its id.-->
 <div id ="my_popup">
     <p>Please enter your information below so that the owner of this property may contact you later.</p>
     <form id="applyPopUp" action="Servlet" method="post">
-        <input type="text" name="name" placeholder="Name"><br/>
-        <input type="text" name="phone" placeholder="Phone"><br/>
-        <input type="text" name="email" placeholder="Email"><br/>
-        <input type="text" name="message" placeholder="Message"><br/>
+        <input type="text" name="email" placeholder="Owner's Email"><br/>
+        <textarea id="applyMessage" rows="12" cols="55" name="message" form="applyPopUp" placeholder="Message"></textarea>
         <div class="center">
-            <input id="applicationSubmit" type="submit" name="sendApplication" value="Apply"/>
+            <input id="applicationSubmit" type="button" name="sendApplication" value="Apply"/>
         </div>
     </form>
 </div>
