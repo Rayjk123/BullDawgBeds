@@ -2,15 +2,19 @@ package logiclayer;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import objectlayer.Message;
 import persistlayer.DbAccess;
 
 public class ApartmentLogicImpl {
@@ -142,6 +146,7 @@ public class ApartmentLogicImpl {
 		DbAccess.disconnect(con);
 	}
 	
+
 	public String getApartmentSearch(String location, int beds, String semester, int priceRangeLow, int priceRangeHigh) {
 		String query = "select * from apartments where location = '" + location + "' and beds = "
 				+ beds + " and price >= " + priceRangeLow +" and price <= " + priceRangeHigh + " and semester = '" + semester + "'";
@@ -224,7 +229,26 @@ public class ApartmentLogicImpl {
 		return tableview;
 	}
 
+	public static List<Message> getMessages(HttpServletRequest request, HttpServletResponse response, String email) throws ServletException, IOException, Exception {
+		List<Message> messageList = new ArrayList<Message>();//create a new messageList to return
+		String query = "SELECT message FROM messages where user_email = '"+email+"'";
 
+		Connection con = DbAccess.connect();
+		ResultSet rs = DbAccess.retrieve(con, query);
+		try {
+			while(rs.next()) {
+				Message message = new Message();
+				message.setMessage(rs.getString("message"));
+				messageList.add(message);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		DbAccess.disconnect(con);
+		return messageList;
+	}
+	
+	
 	public int addMessage(String email, String message) {
 		String query = "INSERT INTO messages (user_email, message) Values('" + email + "', '" + message + "')";
 		int r = 0;
@@ -235,5 +259,6 @@ public class ApartmentLogicImpl {
 		}	
 		return r;
 	}
+
 	
 }

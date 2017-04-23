@@ -176,7 +176,7 @@ public class SearchServlet extends HttpServlet {
 		Template template = null;
 		DefaultObjectWrapperBuilder df = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
 		SimpleHash root = new SimpleHash(df.build());
-		System.out.println("Entered the Servlet");
+		System.out.println("Run the apply thingy");
 		
 		String email = request.getParameter("email");
 		String message = request.getParameter("message");

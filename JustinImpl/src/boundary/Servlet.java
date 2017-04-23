@@ -2,6 +2,7 @@ package boundary;
 import java.io.IOException;
 import java.io.Writer;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,8 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import logiclayer.ApartmentLogicImpl;
+import objectlayer.Message;
+
 
 
 @WebServlet("/Servlet")
@@ -25,6 +28,7 @@ public class Servlet extends HttpServlet {
 	Configuration cfg = null;
 
 	private String templateDir = "/WEB-INF/templates";
+	String currentUser;
 
 
 	/**
@@ -70,7 +74,6 @@ public class Servlet extends HttpServlet {
 		String about = request.getParameter("about"); // home page "About Us" button
 		String leaseMyApartment = request.getParameter("leaseMyApartment"); // home page "Lease your apartment" button
 		String checkMessages = request.getParameter("checkMessages"); // home page "Inbox" button
-//		String search = request.getParameter("search"); // search button
 		String leaseIt = request.getParameter("leaseIt"); // submit their lease button
 		String loginName = null;
 
@@ -134,6 +137,7 @@ public class Servlet extends HttpServlet {
 				loginName = ApartmentLogicImpl.getLoginName(request, response, email); // retrieve the login name from the database
 				templateName = "welcome.ftl";
 				root.put("loginName", loginName);
+				currentUser = email;
 			} else {
 				root.put("failedLogin","yes");
 				templateName = "signIn.ftl";
@@ -149,10 +153,16 @@ public class Servlet extends HttpServlet {
 			templateName = "lease.ftl";
 			
 		} else if (checkMessages != null){ // check to see if user clicked the inbox button on the home page
+			templateName = "inbox.ftl";
 			
-//		} else if (search != null){ // check to see if user clicked the search button on the home page
-//			templateName = "searchPage.ftl";
-//			
+			List<Message> messageList = null;
+			try{
+				messageList = ApartmentLogicImpl.getMessages(request, response, currentUser); // this method will put the movies found into the array list
+				root.put("messageList", messageList); 
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+			
 		} else if (leaseIt != null){
 
 			String name = request.getParameter("name");
