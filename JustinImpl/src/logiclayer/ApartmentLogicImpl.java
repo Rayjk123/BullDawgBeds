@@ -161,6 +161,7 @@ public class ApartmentLogicImpl {
 				tableview = tableview + rs.getString("image") + "\"/></td>";
 				tableview = tableview + "<td class=\"infoTD\">";
 				tableview = tableview + "<ul class=\"searchInfo\">";
+				String email = rs.getString("user_email");
 				String name = rs.getString("name");
 				String address = rs.getString("address");
 				String price = rs.getString("price");
@@ -169,6 +170,7 @@ public class ApartmentLogicImpl {
 				tableview = tableview + "<li class=\"infoItem\">Address: " + address + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Price: " + price + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Beds: " + numBeds + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Email: " + email + "</li>";
 				tableview = tableview + "</ul></td>";
 				tableview = tableview + "<td id =\"apply\">";
 				tableview = tableview + "<button class=\"my_popup_open\">Apply</button></td>";
@@ -198,6 +200,7 @@ public class ApartmentLogicImpl {
 				tableview = tableview + "<tr>";
 				tableview = tableview + "<td class=\"infoTD\">";
 				tableview = tableview + "<ul class=\"searchInfo\">";
+				String email = rs.getString("user_email");
 				String name = rs.getString("name");
 				String address = rs.getString("address");
 				String price = rs.getString("price");
@@ -206,6 +209,7 @@ public class ApartmentLogicImpl {
 				tableview = tableview + "<li class=\"infoItem\">Address: " + address + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Price: " + price + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Beds: " + numBeds + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Email: " + email + "</li>";
 				tableview = tableview + "</ul></td>";
 				tableview = tableview + "<td id =\"apply\">";
 				tableview = tableview + "<button class=\"my_popup_open\">Apply</button></td>";
@@ -221,5 +225,15 @@ public class ApartmentLogicImpl {
 	}
 
 
+	public int addMessage(String email, String message) {
+		String query = "INSERT INTO messages (user_email, message) Values('" + email + "', '" + message + "')";
+		int r = 0;
+		try{
+			r = DbAccess.insert(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return r;
+	}
 	
 }
