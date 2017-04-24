@@ -56,6 +56,7 @@ body, html{
 .images{
     width: 100%;
     height: 100%;
+    margin-top: 20pt;
 }
 
 .imageTD{
@@ -72,7 +73,7 @@ body, html{
 
 .infoItem{
     margin: 0pt;
-    padding-bottom: 17pt;
+    padding-bottom: 12pt;
 }
 
 .infoTD{
@@ -250,4 +251,8 @@ input[name="map"]{
     font-size: 20px;
     color: rgb(249, 64, 64);
     text-align: right;
+}
+
+td{
+	background-color: lightgray;
 }

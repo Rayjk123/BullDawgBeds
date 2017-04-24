@@ -1,7 +1,6 @@
 body, html{
     padding: 0pt;
     margin: 0pt;
-    background-color: black;
 }
 .Welcome{
 	  color: rgb(255,255,255);
@@ -115,6 +114,7 @@ body, html{
     overflow:hidden;
   background-color: rgb(37, 37, 37);
 }
+
 .SHFSBS {
     margin: 0pt;
     padding: 10pt;
@@ -262,13 +262,10 @@ li.dropdown {
   background-color: rgb(9, 2, 2);
     overflow:hidden;
   width: 100%;
-
 }
 
-#slideshow {
-	background-color: black;
-}
-
-#amazingslider-wrapper-1 {
-	background-color: black;
+#my_popup{
+    background-color: white;
+    padding: 10pt;
+    width: 25%;
 }
