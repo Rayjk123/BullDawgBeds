@@ -70,7 +70,6 @@ public class Servlet extends HttpServlet {
 		String signUp = request.getParameter("sign up"); // home page "Sign up" button
 		String register = request.getParameter("register"); // signUp.ftl "Register" button
 		String login = request.getParameter("login"); // signIn.ftl "Login" button
-		String contact = request.getParameter("contact"); // home page "Contact Us" button
 		String about = request.getParameter("about"); // home page "About Us" button
 		String leaseMyApartment = request.getParameter("leaseMyApartment"); // home page "Lease your apartment" button
 		String checkMessages = request.getParameter("checkMessages"); // home page "Inbox" button
@@ -142,9 +141,6 @@ public class Servlet extends HttpServlet {
 				root.put("failedLogin","yes");
 				templateName = "signIn.ftl";
 			}
-			
-		} else if (contact != null){ // check to see if user clicked the contact us button on the home page
-			templateName = "contact.ftl";
 			
 		} else if (about != null){ // check to see if user clicked the contact us button on the home page
 			templateName = "about.ftl";

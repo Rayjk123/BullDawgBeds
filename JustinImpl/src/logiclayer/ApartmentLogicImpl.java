@@ -175,6 +175,7 @@ public class ApartmentLogicImpl {
 				tableview = tableview + "<li class=\"infoItem\">Address: " + address + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Price: " + price + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Beds: " + numBeds + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Semester: " + semester + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Email: " + email + "</li>";
 				tableview = tableview + "</ul></td>";
 				tableview = tableview + "<td id =\"apply\">";
@@ -214,6 +215,7 @@ public class ApartmentLogicImpl {
 				tableview = tableview + "<li class=\"infoItem\">Address: " + address + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Price: " + price + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Beds: " + numBeds + "</li>";
+				tableview = tableview + "<li class=\"infoItem\">Semester: " + semester + "</li>";
 				tableview = tableview + "<li class=\"infoItem\">Email: " + email + "</li>";
 				tableview = tableview + "</ul></td>";
 				tableview = tableview + "<td id =\"apply\">";
