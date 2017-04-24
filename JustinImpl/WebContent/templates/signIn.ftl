@@ -12,12 +12,12 @@
 			<h1>Bulldawg Beds Sign in</h1>
 			
 			<#if registerSuccessful??>
-			<p>Thanks for registering ${name}!</p>
+			<p id ="notice">Thanks for registering ${name}!</p>
 			</#if>
 			
 			<#if failedLogin??>
-			<p>Erorr! Please make sure to input the correct login information.</p>
-			</#if>
+			<p id ="notice">Erorr! Please make sure to input the correct login information.</p>
+			</#if>			
 		
 				<div id = "form">
 					<p></p>

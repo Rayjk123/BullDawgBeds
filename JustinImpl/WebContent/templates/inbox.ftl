@@ -7,17 +7,14 @@
 	</head>
 	
 	<body>
+		<h1>Bulldawg Beds Inbox</h1>
 
-		
-		
-		<table>
-	  		<tr><th>Messages</th></tr>
-	  	  	<#list messageList as read>
-	  	 	 <tr><td>${read.message}</td></tr>
-	  	  	</#list>
-  		</table>
-		
-		
-		
+		<div id = "form">
+			<#list messageList as read>
+			<ul>
+				<li>${read.message}</li>
+			</ul>
+			</#list>
+		</div>
 	</body>	
 </html>

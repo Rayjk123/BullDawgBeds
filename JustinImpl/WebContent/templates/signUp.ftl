@@ -12,11 +12,11 @@
 			<p id ="notice">Please use your UGA email.</p>
 			
 			<#if notValidEmail??>
-			<p>Error! Please use a valid @uga.edu email!</p>
+			<p id = "notice">Error! Please use a valid @uga.edu email!</p>
 			</#if>
 			
 			<#if duplicateEmail??>
-			<p>Error! The email you used to register already exists in the database!</p>
+			<p id = "notice">Error! The email you used to register already exists in the database!</p>
 			</#if>
 			
 			<div id = "form">
